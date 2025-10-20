@@ -1,0 +1,38 @@
+define                  = -DPOSRES  ; position restrain the protein
+
+; Parameters describing what to do, when to stop and what to save
+integrator              = sd        ; Langevin thermostat
+dt                      = 0.002     ; 2 fs
+nsteps                  = 10000     ; 20 ps
+nstenergy               = 500       ; save energy and temperature every 1.0 ps
+
+; periodic boundary condition
+pbc                     = xyz       ;
+
+; Annealing
+tc-grps                 = system   ; coupling groups 
+ref-t                   = 298.15
+tau-t                   = 0.5      ; inverse friction constant, in ps
+annealing               = single
+annealing-npoints       = 2
+annealing-time          = 0 15
+annealing-temp          = 0 298.15
+
+; Pressure coupling is off
+pcoupl                  = no
+
+; Velocity generation
+gen_vel                 = yes                 ; assign velocities from Maxwell distribution
+gen_temp                = 0                 ; temperature for Maxwell distribution
+
+; Settings that make sure we run with parameters in harmony with the selected force-field
+constraints             = h-bonds   ; bonds involving H are constrained
+rcoulomb                = 1.0       ; short-range electrostatic cutoff (in nm)
+rvdw                    = 1.0       ; short-range van der Waals cutoff (in nm)
+vdw-modifier            = Potential-shift ;  specific AMBER
+rvdw_switch             = 1.0       ;
+DispCorr                = EnerPres  ; account for cut-off vdW scheme -
+coulombtype             = PME       ; Particle Mesh Ewald for long-range electrostatics
+fourierspacing          = 0.125     ; grid spacing for FFT
+
+

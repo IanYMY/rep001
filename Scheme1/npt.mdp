@@ -1,0 +1,44 @@
+integrator              = sd        ; Langevin thermostat
+dt                      = 0.002     ; 2 fs
+nsteps                  = 5000      ; 2 * 5000 = 10 ps
+
+; Output control - output frequency in steps
+; Output frequency for  output trajctory file ,trr
+nstxout                  = 250       ; for writing coords (x) 
+nstvout                  = 250       ; for writing velocities (v) 
+nstfout                  = 250       ; for writing forces (f) 
+; Output frequency for energies to log file and energy file
+nstlog                   = 250       ; for writing energies to log file
+nstcalcenergy            = 50
+nstenergy                = 250       ; for writing energies to edr file 
+; Output frequency and precision for .xtc file
+nstxout-compressed       = 250       ; for writing coords (x) 
+
+
+; periodic boundary condition
+pbc                     = xyz       ;
+
+continuation            = yes      
+
+; Pressure coupling is on
+pcoupl                  = Berendsen             ; Pressure coupling on in NPT
+pcoupltype              = isotropic             ; uniform scaling of box vectors
+tau-p                   = 1.0                   ; time constant, in ps
+ref-p                   = 1.01325               ; reference pressure, in bar (1 atm)
+compressibility         = 4.5e-5                ; isothermal compressibility of water, bar^-1
+refcoord_scaling        = com
+
+; Keep system temperature fluctuating physically correct
+tc-grps                 = system   ; coupling groups 
+ref-t                   = 298.15
+tau-t                   = 0.5      ; inverse friction constant, in ps
+
+; Settings that make sure we run with parameters in harmony with the selected force-field
+constraints             = h-bonds   ; bonds involving H are constrained
+rcoulomb                = 1.0       ; short-range electrostatic cutoff (in nm)
+rvdw                    = 1.0       ; short-range van der Waals cutoff (in nm)
+vdw-modifier            = Potential-shift ;  specific AMBER
+rvdw_switch             = 1.0       ;
+DispCorr                = EnerPres  ; account for cut-off vdW scheme -
+coulombtype             = PME       ; Particle Mesh Ewald for long-range electrostatics
+fourierspacing          = 0.125     ; grid spacing for FFT
