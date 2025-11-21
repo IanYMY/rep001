@@ -1,0 +1,10 @@
+#tleap.in
+source leaprc.protein.ff14SB
+source leaprc.water.tip3p
+loadamberparams frcmod.ionsjc_tip3p
+mol=loadpdb F1.pdb
+saveAmberParm mol F1_gas.prmtop F1_gas.inpcrd
+addIons mol Na+ 0
+solvateOct mol TIP3PBOX 6.0
+SaveAmberParm mol F1_ion.prmtop F1_ion.inpcrd
+quit

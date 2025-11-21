@@ -1,0 +1,4 @@
+# pdb.in
+trajin F1_ion.inpcrd
+trajout F1_wions_water.pdb PDB
+run

@@ -1,0 +1,2 @@
+readdata heat.out name heat
+writedata heat_tem.agr heat[TEMP]

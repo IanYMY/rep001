@@ -1,0 +1,8 @@
+parm F1_ion.prmtop
+trajin mdcrd.md mdvel mdvel mdfrc mdfrc
+strip :WAT,Na+
+trajout coord.crd 
+trajout vel.crd mdvel
+trajout force.crd mdfrc
+vector center out center.dat :2810-3093
+run

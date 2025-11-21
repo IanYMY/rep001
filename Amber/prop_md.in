@@ -1,0 +1,8 @@
+readdata md.out name md
+writedata md_tem.agr md[TEMP]
+writedata md_pressure.agr md[PRESS]
+writedata md_density.agr md[Density]
+parm F1_ion.prmtop
+trajin mdcrd.md
+rms rmsd :1-3093&!@H= first out rmsd.agr mass
+run

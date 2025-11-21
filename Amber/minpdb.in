@@ -1,0 +1,3 @@
+parm F1_ion.prmtop
+trajin min.rst7
+trajout min_rst7.pdb PDB

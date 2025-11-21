@@ -1,0 +1,3 @@
+parm F1_ion.prmtop
+trajin heat.rst7
+trajout heat_rst7.pdb PDB
